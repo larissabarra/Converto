@@ -11,7 +11,7 @@ extension CurrencyList {
     
     @MainActor class ViewModel: ObservableObject {
         
-        enum ViewState {
+        enum ViewState: Equatable {
             case loading
             case loaded
             case error(message: String)
