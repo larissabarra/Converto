@@ -7,23 +7,27 @@
 
 import Foundation
 
-@MainActor class CurrencyListViewModel: ObservableObject {
-    @Published var currencies = [Currency]()
-    private let currencyService: CurrencyService
+extension CurrencyList {
     
-    init(currencyService: CurrencyService = FrankfurterCurrencyService() ) {
-        self.currencyService = currencyService
-    }
-    
-    func fetchCurrencies() {
-        currencyService.fetchCurrencies { result in
-            switch result {
-            case .success(let currencies):
-                DispatchQueue.main.async {
-                    self.currencies = currencies
+    @MainActor class ViewModel: ObservableObject {
+        
+        @Published var currencies = [Currency]()
+        private let currencyService: CurrencyService
+        
+        init(currencyService: CurrencyService = FrankfurterCurrencyService() ) {
+            self.currencyService = currencyService
+        }
+        
+        func fetchCurrencies() {
+            currencyService.fetchCurrencies { result in
+                switch result {
+                case .success(let currencies):
+                    DispatchQueue.main.async {
+                        self.currencies = currencies
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
             }
         }
     }
