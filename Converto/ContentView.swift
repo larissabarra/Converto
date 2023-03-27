@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    var items = [Currency(code: "GBP", name: "British Pound"), Currency(code: "EUR", name: "Euro")]
-    
+    @StateObject private var viewModel = CurrencyListViewModel()
+        
     var body: some View {
-        List(items) { item in
-            HStack {
-                Text("\(item.code)")
-                Text("\(item.name)")
-                Spacer()
+        NavigationView {
+            List(viewModel.currencies) { currency in
+                Text("\(currency.code) - \(currency.name)")
             }
+            .navigationTitle("Currencies")
+        }
+        .onAppear {
+            viewModel.fetchCurrencies()
         }
     }
 }
@@ -26,3 +28,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+ 
