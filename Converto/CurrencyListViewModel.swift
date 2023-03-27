@@ -11,22 +11,33 @@ extension CurrencyList {
     
     @MainActor class ViewModel: ObservableObject {
         
-        @Published var currencies = [Currency]()
+        enum ViewState {
+            case loading
+            case loaded
+            case error(message: String)
+        }
+        
+        @Published private(set) var currencies = [Currency]()
+        @Published private(set) var viewState: ViewState
+        
         private let currencyService: CurrencyService
         
         init(currencyService: CurrencyService = FrankfurterCurrencyService() ) {
+            self.viewState = .loading
             self.currencyService = currencyService
         }
         
         func fetchCurrencies() {
-            currencyService.fetchCurrencies { result in
+            viewState = .loading
+            
+            currencyService.fetchCurrencies { [weak self] result in
                 switch result {
                 case .success(let currencies):
-                    DispatchQueue.main.async {
-                        self.currencies = currencies
-                    }
+                    self?.currencies = currencies
+                    self?.viewState = .loaded
+                    
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    self?.viewState = .error(message: error.localizedDescription)
                 }
             }
         }

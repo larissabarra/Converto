@@ -11,11 +11,22 @@ import SwiftUI
     @StateObject private var viewModel = ViewModel()
         
     var body: some View {
+        
         NavigationView {
-            List(viewModel.currencies) { currency in
-                Text("\(currency.code) - \(currency.name)")
+            
+            switch viewModel.viewState {
+            case .loading:
+                ProgressView()
+                
+            case .loaded:
+                List(viewModel.currencies) { currency in
+                    Text("\(currency.code) - \(currency.name)")
+                }
+                .navigationTitle("Currencies")
+                
+            case .error(let message):
+                Text(message)
             }
-            .navigationTitle("Currencies")
         }
         .onAppear {
             viewModel.fetchCurrencies()
