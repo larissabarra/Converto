@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    var items = [Currency(code: "GBP", name: "British Pound"), Currency(code: "EUR", name: "Euro")]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        List(items) { item in
+            HStack {
+                Text("\(item.code)")
+                Text("\(item.name)")
+                Spacer()
+            }
         }
-        .padding()
     }
 }
 
