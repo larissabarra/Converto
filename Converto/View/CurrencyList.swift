@@ -9,6 +9,7 @@ import SwiftUI
 
  struct CurrencyList: View {
     @StateObject private var viewModel = ViewModel()
+    @State private var selectedCurrency: Currency?
         
     var body: some View {
         VStack {
@@ -20,6 +21,7 @@ import SwiftUI
                 Text(CurrencyList.LocalisedStrings.currencies)
                     .font(.title)
                 List(viewModel.currencies) { currency in
+                    
                     HStack {
                         Text("\(currency.code)")
                             .frame(minWidth: 50, alignment: .leading)
@@ -27,7 +29,13 @@ import SwiftUI
                             .frame(alignment: .leading)
                         Spacer()
                     }
+                    .onTapGesture {
+                        selectedCurrency = currency
+                        viewModel.latestFrom(currency)
+                    }
+                    .listRowBackground(self.selectedCurrency == currency ? Color.green : Color.clear)
                 }.listStyle(.plain)
+                    
                 
             case .error(let message):
                 Text(message)

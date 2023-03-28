@@ -41,5 +41,9 @@ extension CurrencyList {
                 }
             }
         }
+        
+        func latestFrom(_ currency: Currency) {
+            print(currency.code)
+        }
     }
 }
