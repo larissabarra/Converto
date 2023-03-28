@@ -36,6 +36,7 @@ struct CurrencyList: View {
                         Text(exchangeRateText(for: currency))
                             .foregroundColor(.gray)
                     }
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         selectedCurrency = currency
                         viewModel.latestFrom(currency)
