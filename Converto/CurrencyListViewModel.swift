@@ -60,7 +60,7 @@ extension CurrencyList {
                             }
                             
                         case .failure(let error):
-                            self?.viewState = .error(message: error.localizedDescription)
+                            print(error)
                     }
                 }
             }

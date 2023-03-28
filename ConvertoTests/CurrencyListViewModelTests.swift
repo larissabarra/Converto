@@ -15,7 +15,7 @@ class CurrencyListViewModelTests: XCTestCase {
     var currencyListViewModel: CurrencyList.ViewModel!
     var mockAPIService: CurrencyServiceMock!
     
-    @MainActor override func setUp() {
+    override func setUp() {
         super.setUp()
         mockAPIService = CurrencyServiceMock()
         currencyListViewModel = CurrencyList.ViewModel(currencyService: mockAPIService)
@@ -27,7 +27,7 @@ class CurrencyListViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    @MainActor func testFetchCurrenciesSuccess() {
+    func testFetchCurrenciesSuccess() {
         mockAPIService.currencies = [
             Currency(code: "USD", name: "United States Dollar"),
             Currency(code: "EUR", name: "Euro"),
@@ -47,7 +47,7 @@ class CurrencyListViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
     }
     
-    @MainActor func testFetchCurrenciesFailure() {
+    func testFetchCurrenciesFailure() {
         mockAPIService.error = URLError(.unknown)
         
         let expectation = XCTestExpectation(description: "Fetch currencies should fail")
@@ -62,10 +62,35 @@ class CurrencyListViewModelTests: XCTestCase {
         
         wait(for: [expectation], timeout: 5.0)
     }
+    
+    func testFetchLatestExchange() {
+        let gbp = Currency(code: "GBP", name: "British Pound")
+        let eur = Currency(code: "EUR", name: "Euro")
+        mockAPIService.currencies = [gbp, eur]
+        mockAPIService.exchangeRates = LatestExchangeRates(amount: 1,
+                                                           base: "BRL",
+                                                           date: "2023-03-28",
+                                                           rates: ["GBP" : 6, "EUR": 5])
+        
+        let expectation = XCTestExpectation(description: "Fetch exchange rates should succeed")
+        
+        currencyListViewModel.fetchCurrencies()
+        currencyListViewModel.latestFrom(Currency(code: "BRL", name: "Brazilian Real"))
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            XCTAssertEqual(self.currencyListViewModel.exchangeRates[gbp], 6)
+            XCTAssertEqual(self.currencyListViewModel.exchangeRates[eur], 5)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 5.0)
+    }
 }
 
 class CurrencyServiceMock: CurrencyService {
+    
     var currencies: [Converto.Currency]?
+    var exchangeRates: Converto.LatestExchangeRates?
     var error: Error?
     
     func fetchCurrencies(completion: @escaping (Result<[Converto.Currency], Error>) -> Void) {
@@ -73,6 +98,14 @@ class CurrencyServiceMock: CurrencyService {
             completion(.failure(error))
         } else if let currencies = currencies {
             completion(.success(currencies))
+        }
+    }
+    
+    func fetchLatestExchangeRates(for currency: Converto.Currency, completion: @escaping (Result<Converto.LatestExchangeRates, Error>) -> Void) {
+        if let error = error {
+            completion(.failure(error))
+        } else if let rates = exchangeRates {
+            completion(.success(rates))
         }
     }
 }
