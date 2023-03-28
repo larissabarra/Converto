@@ -19,6 +19,7 @@
 		4E11F43129D234B6005185F3 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F43029D234B6005185F3 /* CurrencyService.swift */; };
 		4E11F43329D23E03005185F3 /* CurrencyListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F43229D23E03005185F3 /* CurrencyListViewModelTests.swift */; };
 		4E11F43629D35644005185F3 /* CurrencyListConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F43529D35644005185F3 /* CurrencyListConstants.swift */; };
+		4E11F43829D36212005185F3 /* LatestExchangeRates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F43729D36212005185F3 /* LatestExchangeRates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		4E11F43029D234B6005185F3 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		4E11F43229D23E03005185F3 /* CurrencyListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListViewModelTests.swift; sourceTree = "<group>"; };
 		4E11F43529D35644005185F3 /* CurrencyListConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListConstants.swift; sourceTree = "<group>"; };
+		4E11F43729D36212005185F3 /* LatestExchangeRates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestExchangeRates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			children = (
 				4E11F42C29D2320D005185F3 /* Currency.swift */,
 				4E11F43029D234B6005185F3 /* CurrencyService.swift */,
+				4E11F43729D36212005185F3 /* LatestExchangeRates.swift */,
 			);
 			path = ConvertoKit;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				4E11F43629D35644005185F3 /* CurrencyListConstants.swift in Sources */,
 				4E11F42F29D2349C005185F3 /* CurrencyListViewModel.swift in Sources */,
 				4E11F40129D23124005185F3 /* ConvertoApp.swift in Sources */,
+				4E11F43829D36212005185F3 /* LatestExchangeRates.swift in Sources */,
 				4E11F42D29D2320D005185F3 /* Currency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

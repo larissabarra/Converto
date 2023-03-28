@@ -9,6 +9,7 @@ import Foundation
 
 protocol CurrencyService {
     func fetchCurrencies(completion: @escaping (Result<[Currency], Error>) -> Void)
+    func fetchLatestExchangeRates(for currency: Currency, completion: @escaping (Result<LatestExchangeRates, Error>) -> Void)
 }
 
 class FrankfurterCurrencyService: CurrencyService {
@@ -35,4 +36,26 @@ class FrankfurterCurrencyService: CurrencyService {
             }
         }.resume()
     }
+    
+    func fetchLatestExchangeRates(for currency: Currency, completion: @escaping (Result<LatestExchangeRates, Error>) -> Void) {
+        guard let url = URL(string: "\(basePath)/latest?from=\(currency.code)") else {
+            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data not found"])))
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let exchangeRates = try decoder.decode(LatestExchangeRates.self, from: data)
+                completion(.success(exchangeRates))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
 }
+

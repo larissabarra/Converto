@@ -18,6 +18,8 @@ extension CurrencyList {
         }
         
         @Published private(set) var currencies = [Currency]()
+        @Published private(set) var exchangeRates = [Currency: Double]()
+        
         @Published private(set) var viewState: ViewState
         
         private let currencyService: CurrencyService
@@ -43,7 +45,21 @@ extension CurrencyList {
         }
         
         func latestFrom(_ currency: Currency) {
-            print(currency.code)
+            exchangeRates.removeAll()
+            
+            currencyService.fetchLatestExchangeRates(for: currency) { [weak self] result in
+                switch result {
+                case .success(let rates):
+                    rates.rates.forEach { code, rate in
+                        guard let currencyFromCode = self?.currencies.first(where: { $0.code == code }) else { return }
+                        
+                        self?.exchangeRates[currencyFromCode] = rate
+                    }
+                    
+                case .failure(let error):
+                    self?.viewState = .error(message: error.localizedDescription)
+                }
+            }
         }
     }
 }

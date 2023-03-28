@@ -7,7 +7,7 @@
 
 import SwiftUI
 
- struct CurrencyList: View {
+struct CurrencyList: View {
     @StateObject private var viewModel = ViewModel()
     @State private var selectedCurrency: Currency?
         
@@ -22,18 +22,26 @@ import SwiftUI
                     .font(.title)
                 List(viewModel.currencies) { currency in
                     
-                    HStack {
+                    HStack(alignment: .center) {
                         Text("\(currency.code)")
                             .frame(minWidth: 50, alignment: .leading)
+                            .font(.caption)
+                        
                         Text("\(currency.name)")
                             .frame(alignment: .leading)
+                            .font(.headline)
+                        
                         Spacer()
+                        
+                        Text(exchangeRateText(for: currency))
+                            .foregroundColor(.gray)
                     }
                     .onTapGesture {
                         selectedCurrency = currency
                         viewModel.latestFrom(currency)
                     }
                     .listRowBackground(self.selectedCurrency == currency ? Color.green : Color.clear)
+                    .contentTransition(.opacity)
                 }.listStyle(.plain)
                     
                 
@@ -43,6 +51,16 @@ import SwiftUI
         }
         .onAppear {
             viewModel.fetchCurrencies()
+        }
+    }
+     
+    func exchangeRateText(for currency: Currency) -> String {
+        guard let selectedCurrency = selectedCurrency else { return "" }
+        
+        if currency == selectedCurrency {
+            return 1.0.formatted(.currency(code: selectedCurrency.code))
+        } else {
+            return viewModel.exchangeRates[currency]?.formatted(.currency(code: currency.code)) ?? "-"
         }
     }
 }
