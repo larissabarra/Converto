@@ -33,7 +33,7 @@ extension CurrencyList {
             currencyService.fetchCurrencies { [weak self] result in
                 switch result {
                 case .success(let currencies):
-                    self?.currencies = currencies
+                    self?.currencies = currencies.sorted(by: { $0.code < $1.code })
                     self?.viewState = .loaded
                     
                 case .failure(let error):
