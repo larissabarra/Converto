@@ -11,18 +11,23 @@ import SwiftUI
     @StateObject private var viewModel = ViewModel()
         
     var body: some View {
-        
-        NavigationView {
-            
+        VStack {
             switch viewModel.viewState {
             case .loading:
                 ProgressView()
                 
             case .loaded:
+                Text(CurrencyList.LocalisedStrings.currencies)
+                    .font(.title)
                 List(viewModel.currencies) { currency in
-                    Text("\(currency.code) - \(currency.name)")
-                }
-                .navigationTitle("Currencies")
+                    HStack {
+                        Text("\(currency.code)")
+                            .frame(minWidth: 50, alignment: .leading)
+                        Text("\(currency.name)")
+                            .frame(alignment: .leading)
+                        Spacer()
+                    }
+                }.listStyle(.plain)
                 
             case .error(let message):
                 Text(message)
