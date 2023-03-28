@@ -9,7 +9,7 @@ import Foundation
 
 extension CurrencyList {
     
-    @MainActor class ViewModel: ObservableObject {
+    class ViewModel: ObservableObject {
         
         enum ViewState: Equatable {
             case loading
@@ -33,13 +33,15 @@ extension CurrencyList {
             viewState = .loading
             
             currencyService.fetchCurrencies { [weak self] result in
-                switch result {
-                case .success(let currencies):
-                    self?.currencies = currencies.sorted(by: { $0.code < $1.code })
-                    self?.viewState = .loaded
-                    
-                case .failure(let error):
-                    self?.viewState = .error(message: error.localizedDescription)
+                DispatchQueue.main.async {
+                    switch result {
+                        case .success(let currencies):
+                            self?.currencies = currencies.sorted(by: { $0.code < $1.code })
+                            self?.viewState = .loaded
+                            
+                        case .failure(let error):
+                            self?.viewState = .error(message: error.localizedDescription)
+                    }
                 }
             }
         }
@@ -48,16 +50,18 @@ extension CurrencyList {
             exchangeRates.removeAll()
             
             currencyService.fetchLatestExchangeRates(for: currency) { [weak self] result in
-                switch result {
-                case .success(let rates):
-                    rates.rates.forEach { code, rate in
-                        guard let currencyFromCode = self?.currencies.first(where: { $0.code == code }) else { return }
-                        
-                        self?.exchangeRates[currencyFromCode] = rate
+                DispatchQueue.main.async {
+                    switch result {
+                        case .success(let rates):
+                            rates.rates.forEach { code, rate in
+                                guard let currencyFromCode = self?.currencies.first(where: { $0.code == code }) else { return }
+                                
+                                self?.exchangeRates[currencyFromCode] = rate
+                            }
+                            
+                        case .failure(let error):
+                            self?.viewState = .error(message: error.localizedDescription)
                     }
-                    
-                case .failure(let error):
-                    self?.viewState = .error(message: error.localizedDescription)
                 }
             }
         }
