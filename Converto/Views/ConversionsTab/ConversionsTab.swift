@@ -21,39 +21,44 @@ struct ConversionsTab: View {
                     }
                 }
                 
-                TextField("Amount", text: $viewModel.fromAmount)
-                    .keyboardType(.decimalPad)
-                    .onTapGesture {
-                        viewModel.fromAmount = ""
-                    }
-            }
-            
-            HStack {
+                Spacer()
+                
                 Picker("To Currency", selection: $viewModel.toCurrency) {
                     Text("-").tag(nil as Currency?)
                     ForEach(viewModel.currencies) { currency in
                         Text(currency.code).tag(currency as Currency?)
                     }
                 }
-                
+            }
+            
+            HStack {
                 TextField("Amount", text: $viewModel.toAmount)
                     .keyboardType(.decimalPad)
                     .onTapGesture {
                         viewModel.toAmount = ""
                     }
+                
+                Text("=")
+                    .font(.title)
+                
+                TextField("Amount", text: $viewModel.fromAmount)
+                    .keyboardType(.decimalPad)
+                    .onTapGesture {
+                        viewModel.fromAmount = ""
+                    }
             }
         }
         .onChange(of: viewModel.fromCurrency) { _ in
-            viewModel.convert()
+            viewModel.convert(updated: .fromCurrency)
         }
         .onChange(of: viewModel.toCurrency) { _ in
-            viewModel.convert()
+            viewModel.convert(updated: .toCurrency)
         }
         .onChange(of: viewModel.fromAmount) { _ in
-            viewModel.convert()
+            viewModel.convert(updated: .fromAmount)
         }
         .onChange(of: viewModel.toAmount) { _ in
-            viewModel.convert()
+            viewModel.convert(updated: .toAmount)
         }
         .padding(24)
         .onAppear {
