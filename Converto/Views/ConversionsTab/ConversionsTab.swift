@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ConversionsTab: View {
     
+    @StateObject private var viewModel = ViewModel()
+    
     @State private var selectedCurrency1: Currency?
     @State private var selectedCurrency2: Currency?
     
@@ -18,18 +20,20 @@ struct ConversionsTab: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack {
-                Button {
-                    print(value1)
-                } label: {
-                    Text("currency")
+                Picker("Currency", selection: $selectedCurrency1) {
+                    Text(" - ").tag(nil as Currency?)
+                    ForEach(viewModel.currencies) { currency in
+                        Text(currency.code).tag(currency as Currency?)
+                    }
                 }
                 
                 Spacer()
                 
-                Button {
-                    print(value2)
-                } label: {
-                    Text("currency")
+                Picker("Currency", selection: $selectedCurrency2) {
+                    Text(" - ").tag(nil as Currency?)
+                    ForEach(viewModel.currencies) { currency in
+                        Text(currency.code).tag(currency as Currency?)
+                    }
                 }
             }
             
@@ -39,7 +43,8 @@ struct ConversionsTab: View {
                     .textFieldStyle(.roundedBorder)
                 
                 Spacer()
-                Image(systemName: "arrow.left.arrow.right")
+                Text("=")
+                    .font(.title)
                 Spacer()
                 
                 TextField("0.0", text: $value2)
@@ -48,11 +53,8 @@ struct ConversionsTab: View {
             }
         }
         .padding(24)
-    }
-}
-
-struct ConversionsTab_Previews: PreviewProvider {
-    static var previews: some View {
-        ConversionsTab()
+        .onAppear {
+            viewModel.fetchCurrencies()
+        }
     }
 }
