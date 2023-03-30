@@ -11,46 +11,49 @@ struct ConversionsTab: View {
     
     @StateObject private var viewModel = ViewModel()
     
-    @State private var selectedCurrency1: Currency?
-    @State private var selectedCurrency2: Currency?
-    
-    @State private var value1: String = "0"
-    @State private var value2: String = "0"
-    
     var body: some View {
-        VStack(alignment: .center) {
+        VStack {
             HStack {
-                Picker("Currency", selection: $selectedCurrency1) {
-                    Text(" - ").tag(nil as Currency?)
+                Picker("From Currency", selection: $viewModel.fromCurrency) {
+                    Text("-").tag(nil as Currency?)
                     ForEach(viewModel.currencies) { currency in
                         Text(currency.code).tag(currency as Currency?)
                     }
                 }
                 
-                Spacer()
-                
-                Picker("Currency", selection: $selectedCurrency2) {
-                    Text(" - ").tag(nil as Currency?)
-                    ForEach(viewModel.currencies) { currency in
-                        Text(currency.code).tag(currency as Currency?)
+                TextField("Amount", text: $viewModel.fromAmount)
+                    .keyboardType(.decimalPad)
+                    .onTapGesture {
+                        viewModel.fromAmount = ""
                     }
-                }
             }
             
             HStack {
-                TextField("0.0", text: $value1)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(.roundedBorder)
+                Picker("To Currency", selection: $viewModel.toCurrency) {
+                    Text("-").tag(nil as Currency?)
+                    ForEach(viewModel.currencies) { currency in
+                        Text(currency.code).tag(currency as Currency?)
+                    }
+                }
                 
-                Spacer()
-                Text("=")
-                    .font(.title)
-                Spacer()
-                
-                TextField("0.0", text: $value2)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(.roundedBorder)
+                TextField("Amount", text: $viewModel.toAmount)
+                    .keyboardType(.decimalPad)
+                    .onTapGesture {
+                        viewModel.toAmount = ""
+                    }
             }
+        }
+        .onChange(of: viewModel.fromCurrency) { _ in
+            viewModel.convert()
+        }
+        .onChange(of: viewModel.toCurrency) { _ in
+            viewModel.convert()
+        }
+        .onChange(of: viewModel.fromAmount) { _ in
+            viewModel.convert()
+        }
+        .onChange(of: viewModel.toAmount) { _ in
+            viewModel.convert()
         }
         .padding(24)
         .onAppear {

@@ -78,6 +78,41 @@ class FrankfurterCurrencyService: CurrencyService {
             }
         }.resume()
     }
+    
+    func convert(amount: Double, from: Currency, to: Currency, completion: @escaping (Result<LatestExchangeRates, Error>) -> Void) {
+        guard let url = URL(string: "\(basePath)/latest?amount=\(amount)&from=\(from.code)&to=\(to.code)") else {
+            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
+            return
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = .gmt
+        
+        if let exchangeRates = exchangeCache.object(forKey: url as NSURL)?.unwrap(),
+           let exchangeDate = dateFormatter.date(from: exchangeRates.date),
+           exchangeDate.distance(to: Date()) < exchangeCacheDuration {
+            completion(.success(exchangeRates))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data not found"])))
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let exchangeRates = try decoder.decode(LatestExchangeRates.self, from: data)
+                
+                self.exchangeCache.setObject(StructWrapper(exchangeRates), forKey: url as NSURL)
+                
+                completion(.success(exchangeRates))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
 }
 
 class StructWrapper<T>: NSObject {
