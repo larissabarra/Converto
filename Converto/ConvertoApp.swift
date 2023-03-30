@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct ConvertoApp: App {
+    let currencyService: CurrencyService = FrankfurterCurrencyService()
     var body: some Scene {
         WindowGroup {
             TabView {

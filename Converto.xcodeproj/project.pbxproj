@@ -21,6 +21,7 @@
 		4E11F44E29D5D094005185F3 /* CurrencyListConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F44B29D5D094005185F3 /* CurrencyListConstants.swift */; };
 		4E11F44F29D5D094005185F3 /* CurrencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F44C29D5D094005185F3 /* CurrencyList.swift */; };
 		4E11F45229D5D0BC005185F3 /* ConversionsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F45129D5D0BC005185F3 /* ConversionsTab.swift */; };
+		4E11F45429D5D644005185F3 /* FrankfurterCurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F45329D5D644005185F3 /* FrankfurterCurrencyService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		4E11F44B29D5D094005185F3 /* CurrencyListConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyListConstants.swift; sourceTree = "<group>"; };
 		4E11F44C29D5D094005185F3 /* CurrencyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyList.swift; sourceTree = "<group>"; };
 		4E11F45129D5D0BC005185F3 /* ConversionsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionsTab.swift; sourceTree = "<group>"; };
+		4E11F45329D5D644005185F3 /* FrankfurterCurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrankfurterCurrencyService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,9 +150,9 @@
 		4E11F42B29D231FD005185F3 /* ConvertoKit */ = {
 			isa = PBXGroup;
 			children = (
-				4E11F42C29D2320D005185F3 /* Currency.swift */,
+				4E11F45529D5D669005185F3 /* Models */,
 				4E11F43029D234B6005185F3 /* CurrencyService.swift */,
-				4E11F43729D36212005185F3 /* LatestExchangeRates.swift */,
+				4E11F45329D5D644005185F3 /* FrankfurterCurrencyService.swift */,
 			);
 			path = ConvertoKit;
 			sourceTree = "<group>";
@@ -180,6 +182,15 @@
 				4E11F45129D5D0BC005185F3 /* ConversionsTab.swift */,
 			);
 			path = ConversionsTab;
+			sourceTree = "<group>";
+		};
+		4E11F45529D5D669005185F3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4E11F42C29D2320D005185F3 /* Currency.swift */,
+				4E11F43729D36212005185F3 /* LatestExchangeRates.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +326,7 @@
 				4E11F43129D234B6005185F3 /* CurrencyService.swift in Sources */,
 				4E11F40129D23124005185F3 /* ConvertoApp.swift in Sources */,
 				4E11F44F29D5D094005185F3 /* CurrencyList.swift in Sources */,
+				4E11F45429D5D644005185F3 /* FrankfurterCurrencyService.swift in Sources */,
 				4E11F44E29D5D094005185F3 /* CurrencyListConstants.swift in Sources */,
 				4E11F44D29D5D094005185F3 /* CurrencyListViewModel.swift in Sources */,
 				4E11F43829D36212005185F3 /* LatestExchangeRates.swift in Sources */,
