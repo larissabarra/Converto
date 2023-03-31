@@ -9,7 +9,14 @@ import SwiftUI
 
 struct ConversionsTab: View {
     
+    private enum Field: Int, CaseIterable {
+        case toAmount
+        case fromAmount
+    }
+    
     @StateObject private var viewModel = ViewModel()
+    
+    @FocusState private var focusedField: Field?
     
     var body: some View {
         VStack {
@@ -22,6 +29,7 @@ struct ConversionsTab: View {
                 }
                 .onTapGesture {
                     viewModel.isEditing = true
+                    focusedField = nil
                 }
                 
                 Spacer()
@@ -34,6 +42,7 @@ struct ConversionsTab: View {
                 }
                 .onTapGesture {
                     viewModel.isEditing = true
+                    focusedField = nil
                 }
             }
             
@@ -44,6 +53,7 @@ struct ConversionsTab: View {
                         viewModel.fromAmount = ""
                         viewModel.isEditing = true
                     }
+                    .focused($focusedField, equals: .fromAmount)
                 
                 Text("=")
                     .font(.title)
@@ -54,6 +64,14 @@ struct ConversionsTab: View {
                         viewModel.toAmount = ""
                         viewModel.isEditing = true
                     }
+                    .focused($focusedField, equals: .toAmount)
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Button("Done") {
+                    focusedField = nil
+                }
             }
         }
         .onChange(of: viewModel.fromCurrency) { _ in
@@ -74,3 +92,4 @@ struct ConversionsTab: View {
         }
     }
 }
+
