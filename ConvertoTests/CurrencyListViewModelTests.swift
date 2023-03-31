@@ -12,55 +12,19 @@ import XCTest
 
 class CurrencyListViewModelTests: XCTestCase {
     
-    var currencyListViewModel: CurrencyList.ViewModel!
+    var viewModel: CurrencyList.ViewModel!
     var mockAPIService: CurrencyServiceMock!
     
     override func setUp() {
         super.setUp()
         mockAPIService = CurrencyServiceMock()
-        currencyListViewModel = CurrencyList.ViewModel(currencyService: mockAPIService)
+        viewModel = CurrencyList.ViewModel(currencyService: mockAPIService)
     }
     
     override func tearDown() {
-        currencyListViewModel = nil
+        viewModel = nil
         mockAPIService = nil
         super.tearDown()
-    }
-    
-    func testFetchCurrenciesSuccess() {
-        mockAPIService.currencies = [
-            Currency(code: "USD", name: "United States Dollar"),
-            Currency(code: "EUR", name: "Euro"),
-            Currency(code: "JPY", name: "Japanese Yen")
-        ]
-        
-        let expectation = XCTestExpectation(description: "Fetch currencies should succeed")
-        
-        currencyListViewModel.fetchCurrencies()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            XCTAssertEqual(self.currencyListViewModel.currencies.count, 3)
-            XCTAssertEqual(self.currencyListViewModel.viewState, .loaded)
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 5.0)
-    }
-    
-    func testFetchCurrenciesFailure() {
-        mockAPIService.error = URLError(.unknown)
-        
-        let expectation = XCTestExpectation(description: "Fetch currencies should fail")
-        
-        currencyListViewModel.fetchCurrencies()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            XCTAssertEqual(self.currencyListViewModel.currencies.count, 0)
-            XCTAssertEqual(self.currencyListViewModel.viewState, .error(message: URLError(.unknown).localizedDescription))
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 5.0)
     }
     
     func testFetchLatestExchange() {
@@ -74,12 +38,11 @@ class CurrencyListViewModelTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Fetch exchange rates should succeed")
         
-        currencyListViewModel.fetchCurrencies()
-        currencyListViewModel.latestFrom(Currency(code: "BRL", name: "Brazilian Real"))
+        viewModel.latestFrom(Currency(code: "BRL", name: "Brazilian Real"))
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            XCTAssertEqual(self.currencyListViewModel.exchangeRates[gbp], 6)
-            XCTAssertEqual(self.currencyListViewModel.exchangeRates[eur], 5)
+            XCTAssertEqual(self.viewModel.exchangeRates[gbp.code], 6)
+            XCTAssertEqual(self.viewModel.exchangeRates[eur.code], 5)
             expectation.fulfill()
         }
         

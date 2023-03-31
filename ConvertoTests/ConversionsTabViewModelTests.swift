@@ -38,7 +38,6 @@ class ConversionsTabViewModelTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Fetch exchange rates should succeed")
         
-        viewModel.fetchCurrencies()
         viewModel.isEditing = true
         viewModel.fromCurrency = gbp
         viewModel.toCurrency = eur

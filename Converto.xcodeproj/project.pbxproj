@@ -25,6 +25,7 @@
 		4E11F45929D75174005185F3 /* CurrencyServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F45829D75174005185F3 /* CurrencyServiceMock.swift */; };
 		4E11F45B29D751AE005185F3 /* ConversionsTabViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F45A29D751AE005185F3 /* ConversionsTabViewModelTests.swift */; };
 		4E11F45D29D76124005185F3 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F45C29D76124005185F3 /* AppViewModel.swift */; };
+		4E11F45F29D76166005185F3 /* AppViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F45E29D76166005185F3 /* AppViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		4E11F45829D75174005185F3 /* CurrencyServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyServiceMock.swift; sourceTree = "<group>"; };
 		4E11F45A29D751AE005185F3 /* ConversionsTabViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionsTabViewModelTests.swift; sourceTree = "<group>"; };
 		4E11F45C29D76124005185F3 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		4E11F45E29D76166005185F3 /* AppViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				4E11F43229D23E03005185F3 /* CurrencyListViewModelTests.swift */,
 				4E11F45829D75174005185F3 /* CurrencyServiceMock.swift */,
 				4E11F45A29D751AE005185F3 /* ConversionsTabViewModelTests.swift */,
+				4E11F45E29D76166005185F3 /* AppViewModelTests.swift */,
 			);
 			path = ConvertoTests;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			files = (
 				4E11F45929D75174005185F3 /* CurrencyServiceMock.swift in Sources */,
 				4E11F43329D23E03005185F3 /* CurrencyListViewModelTests.swift in Sources */,
+				4E11F45F29D76166005185F3 /* AppViewModelTests.swift in Sources */,
 				4E11F45B29D751AE005185F3 /* ConversionsTabViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
