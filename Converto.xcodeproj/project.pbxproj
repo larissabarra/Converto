@@ -159,9 +159,8 @@
 		4E11F42B29D231FD005185F3 /* ConvertoKit */ = {
 			isa = PBXGroup;
 			children = (
+				4E11F46029D7649E005185F3 /* Service */,
 				4E11F45529D5D669005185F3 /* Models */,
-				4E11F43029D234B6005185F3 /* CurrencyService.swift */,
-				4E11F45329D5D644005185F3 /* FrankfurterCurrencyService.swift */,
 			);
 			path = ConvertoKit;
 			sourceTree = "<group>";
@@ -203,6 +202,15 @@
 				4E11F43729D36212005185F3 /* LatestExchangeRates.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4E11F46029D7649E005185F3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4E11F43029D234B6005185F3 /* CurrencyService.swift */,
+				4E11F45329D5D644005185F3 /* FrankfurterCurrencyService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
