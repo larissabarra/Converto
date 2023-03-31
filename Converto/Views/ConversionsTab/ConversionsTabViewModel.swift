@@ -18,7 +18,6 @@ extension ConversionsTab {
             case toAmount
         }
         
-        @Published private(set) var currencies = [Currency]()
         @Published var fromCurrency: Currency?
         @Published var toCurrency: Currency?
         @Published var fromAmount: String = ""
@@ -29,20 +28,6 @@ extension ConversionsTab {
         
         init(currencyService: CurrencyService = FrankfurterCurrencyService() ) {
             self.currencyService = currencyService
-        }
-        
-        func fetchCurrencies() {
-            currencyService.fetchCurrencies { [weak self] result in
-                DispatchQueue.main.async {
-                    switch result {
-                        case .success(let currencies):
-                            self?.currencies = currencies.sorted(by: { $0.code < $1.code })
-                            
-                        case .failure(let error):
-                            print(error)
-                    }
-                }
-            }
         }
         
         func convert(updated: UpdatedField) {

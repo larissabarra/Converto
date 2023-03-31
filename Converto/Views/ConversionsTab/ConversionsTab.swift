@@ -14,6 +14,8 @@ struct ConversionsTab: View {
         case fromAmount
     }
     
+    @EnvironmentObject var appViewModel: ConvertoApp.ViewModel
+    
     @StateObject private var viewModel = ViewModel()
     
     @FocusState private var focusedField: Field?
@@ -23,7 +25,7 @@ struct ConversionsTab: View {
             HStack {
                 Picker("From Currency", selection: $viewModel.fromCurrency) {
                     Text("-").tag(nil as Currency?)
-                    ForEach(viewModel.currencies) { currency in
+                    ForEach(appViewModel.currencies) { currency in
                         Text(currency.code).tag(currency as Currency?)
                     }
                 }
@@ -36,7 +38,7 @@ struct ConversionsTab: View {
                 
                 Picker("To Currency", selection: $viewModel.toCurrency) {
                     Text("-").tag(nil as Currency?)
-                    ForEach(viewModel.currencies) { currency in
+                    ForEach(appViewModel.currencies) { currency in
                         Text(currency.code).tag(currency as Currency?)
                     }
                 }
@@ -87,9 +89,6 @@ struct ConversionsTab: View {
             viewModel.convert(updated: .toAmount)
         }
         .padding(24)
-        .onAppear {
-            viewModel.fetchCurrencies()
-        }
     }
 }
 

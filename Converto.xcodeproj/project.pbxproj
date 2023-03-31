@@ -24,6 +24,7 @@
 		4E11F45729D5DBF0005185F3 /* ConversionsTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F45629D5DBF0005185F3 /* ConversionsTabViewModel.swift */; };
 		4E11F45929D75174005185F3 /* CurrencyServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F45829D75174005185F3 /* CurrencyServiceMock.swift */; };
 		4E11F45B29D751AE005185F3 /* ConversionsTabViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F45A29D751AE005185F3 /* ConversionsTabViewModelTests.swift */; };
+		4E11F45D29D76124005185F3 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F45C29D76124005185F3 /* AppViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		4E11F45629D5DBF0005185F3 /* ConversionsTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionsTabViewModel.swift; sourceTree = "<group>"; };
 		4E11F45829D75174005185F3 /* CurrencyServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyServiceMock.swift; sourceTree = "<group>"; };
 		4E11F45A29D751AE005185F3 /* ConversionsTabViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionsTabViewModelTests.swift; sourceTree = "<group>"; };
+		4E11F45C29D76124005185F3 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +119,6 @@
 			children = (
 				4E11F43429D35633005185F3 /* Views */,
 				4E11F42B29D231FD005185F3 /* ConvertoKit */,
-				4E11F40029D23124005185F3 /* ConvertoApp.swift */,
 				4E11F40429D23124005185F3 /* Assets.xcassets */,
 				4E11F40629D23124005185F3 /* Converto.entitlements */,
 				4E11F40729D23124005185F3 /* Preview Content */,
@@ -165,6 +166,8 @@
 		4E11F43429D35633005185F3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E11F40029D23124005185F3 /* ConvertoApp.swift */,
+				4E11F45C29D76124005185F3 /* AppViewModel.swift */,
 				4E11F45029D5D098005185F3 /* ConversionsTab */,
 				4E11F44929D5D078005185F3 /* CurrencyList */,
 			);
@@ -337,6 +340,7 @@
 				4E11F44E29D5D094005185F3 /* CurrencyListConstants.swift in Sources */,
 				4E11F44D29D5D094005185F3 /* CurrencyListViewModel.swift in Sources */,
 				4E11F43829D36212005185F3 /* LatestExchangeRates.swift in Sources */,
+				4E11F45D29D76124005185F3 /* AppViewModel.swift in Sources */,
 				4E11F42D29D2320D005185F3 /* Currency.swift in Sources */,
 				4E11F45229D5D0BC005185F3 /* ConversionsTab.swift in Sources */,
 			);
