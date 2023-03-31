@@ -23,6 +23,7 @@ extension ConversionsTab {
         @Published var toCurrency: Currency?
         @Published var fromAmount: String = ""
         @Published var toAmount: String = ""
+        @Published var isEditing = false
         
         private let currencyService: CurrencyService
         
@@ -45,7 +46,8 @@ extension ConversionsTab {
         }
         
         func convert(updated: UpdatedField) {
-            guard let fromCurrency,
+            guard isEditing,
+                  let fromCurrency,
                   let toCurrency,
                   !(fromAmount.isEmpty && toAmount.isEmpty) else {
                 return
@@ -73,6 +75,7 @@ extension ConversionsTab {
                 switch result {
                     case .success(let exchangeRate):
                         DispatchQueue.main.async {
+                            self.isEditing = false
                             switch updated {
                                 case .fromCurrency, .fromAmount:
                                     self.toAmount = String(format: "%.2f", (exchangeRate.rates.first?.value ?? 0))

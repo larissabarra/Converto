@@ -20,6 +20,9 @@ struct ConversionsTab: View {
                         Text(currency.code).tag(currency as Currency?)
                     }
                 }
+                .onTapGesture {
+                    viewModel.isEditing = true
+                }
                 
                 Spacer()
                 
@@ -29,22 +32,27 @@ struct ConversionsTab: View {
                         Text(currency.code).tag(currency as Currency?)
                     }
                 }
+                .onTapGesture {
+                    viewModel.isEditing = true
+                }
             }
             
             HStack {
-                TextField("Amount", text: $viewModel.toAmount)
+                TextField("Amount", text: $viewModel.fromAmount)
                     .keyboardType(.decimalPad)
                     .onTapGesture {
-                        viewModel.toAmount = ""
+                        viewModel.fromAmount = ""
+                        viewModel.isEditing = true
                     }
                 
                 Text("=")
                     .font(.title)
                 
-                TextField("Amount", text: $viewModel.fromAmount)
+                TextField("Amount", text: $viewModel.toAmount)
                     .keyboardType(.decimalPad)
                     .onTapGesture {
-                        viewModel.fromAmount = ""
+                        viewModel.toAmount = ""
+                        viewModel.isEditing = true
                     }
             }
         }
