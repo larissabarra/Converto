@@ -86,26 +86,3 @@ class CurrencyListViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
     }
 }
-
-class CurrencyServiceMock: CurrencyService {
-    
-    var currencies: [Converto.Currency]?
-    var exchangeRates: Converto.LatestExchangeRates?
-    var error: Error?
-    
-    func fetchCurrencies(completion: @escaping (Result<[Converto.Currency], Error>) -> Void) {
-        if let error = error {
-            completion(.failure(error))
-        } else if let currencies = currencies {
-            completion(.success(currencies))
-        }
-    }
-    
-    func fetchLatestExchangeRates(for currency: Converto.Currency, completion: @escaping (Result<Converto.LatestExchangeRates, Error>) -> Void) {
-        if let error = error {
-            completion(.failure(error))
-        } else if let rates = exchangeRates {
-            completion(.success(rates))
-        }
-    }
-}
