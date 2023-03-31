@@ -1,9 +1,9 @@
-//
-//  FrankfurterCurrencyService.swift
-//  Converto
-//
-//  Created by Larissa Barra on 30/03/2023.
-//
+    //
+    //  FrankfurterCurrencyService.swift
+    //  Converto
+    //
+    //  Created by Larissa Barra on 30/03/2023.
+    //
 
 import Foundation
 
@@ -13,6 +13,12 @@ class FrankfurterCurrencyService: CurrencyService {
     private let currenciesCache = NSCache<NSURL, StructWrapper<[Currency]>>()
     private let exchangeCache = NSCache<NSURL, StructWrapper<LatestExchangeRates>>()
     private let exchangeCacheDuration = TimeInterval(60 * 60 * 24)
+    
+    private let apiService: APIService
+    
+    init(apiService: APIService = URLSessionAPIService()) {
+        self.apiService = apiService
+    }
     
     func fetchCurrencies(completion: @escaping (Result<[Currency], Error>) -> Void) {
         guard let url = URL(string: "\(basePath)/currencies") else {
@@ -25,43 +31,12 @@ class FrankfurterCurrencyService: CurrencyService {
             return
         }
         
-        performRequest(url: url,
-                       dataType: [String: String].self,
-                       responseType: [Currency].self,
-                       mappingFunction: { data in data.map { Currency(code: $0.key, name: $0.value) }},
-                       cache: currenciesCache,
-                       completion: completion)
-    }
-    
-    func performRequest<V: Decodable, T>(url: URL, dataType: V.Type, responseType: T.Type, mappingFunction: ((V) -> T)? = nil, cache: NSCache<NSURL, StructWrapper<T>>, completion: @escaping (Result<T, Error>) -> Void) {
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data not found"])))
-                return
-            }
-
-            do {
-                let decodedData = try JSONDecoder().decode(V.self, from: data)
-                
-                var result: T
-                
-                if let mappingFunction {
-                    result = mappingFunction(decodedData)
-                } else if let decoded = decodedData as? T {
-                    result = decoded
-                } else {
-                    completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Data conversion failed"])))
-                    return
-                }
-
-                cache.setObject(StructWrapper(result), forKey: url as NSURL)
-
-                completion(.success(result))
-            } catch {
-                completion(.failure(error))
-            }
-        }.resume()
+        apiService.performRequest(url: url,
+                                  dataType: [String: String].self,
+                                  responseType: [Currency].self,
+                                  mappingFunction: { data in data.map { Currency(code: $0.key, name: $0.value) }},
+                                  cache: currenciesCache,
+                                  completion: completion)
     }
     
     func fetchLatestExchangeRates(for currency: Currency, completion: @escaping (Result<LatestExchangeRates, Error>) -> Void) {
@@ -95,23 +70,12 @@ class FrankfurterCurrencyService: CurrencyService {
             return
         }
         
-        performRequest(url: url,
-                       dataType: LatestExchangeRates.self,
-                       responseType: LatestExchangeRates.self,
-                       cache: exchangeCache,
-                       completion: completion)
+        apiService.performRequest(url: url,
+                                  dataType: LatestExchangeRates.self,
+                                  responseType: LatestExchangeRates.self,
+                                  mappingFunction: nil,
+                                  cache: exchangeCache,
+                                  completion: completion)
     }
 }
 
-class StructWrapper<T>: NSObject {
-    
-    let value: T
-    
-    init(_ _struct: T) {
-        self.value = _struct
-    }
-    
-    func unwrap() -> T {
-        value
-    }
-}
