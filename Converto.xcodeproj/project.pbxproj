@@ -10,8 +10,7 @@
 		4E11F40129D23124005185F3 /* ConvertoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F40029D23124005185F3 /* ConvertoApp.swift */; };
 		4E11F40529D23124005185F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E11F40429D23124005185F3 /* Assets.xcassets */; };
 		4E11F40929D23124005185F3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E11F40829D23124005185F3 /* Preview Assets.xcassets */; };
-		4E11F41D29D23125005185F3 /* ConvertoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F41C29D23125005185F3 /* ConvertoUITests.swift */; };
-		4E11F41F29D23125005185F3 /* ConvertoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F41E29D23125005185F3 /* ConvertoUITestsLaunchTests.swift */; };
+		4E11F41D29D23125005185F3 /* CurrenciesTabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F41C29D23125005185F3 /* CurrenciesTabUITests.swift */; };
 		4E11F42D29D2320D005185F3 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F42C29D2320D005185F3 /* Currency.swift */; };
 		4E11F43129D234B6005185F3 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F43029D234B6005185F3 /* CurrencyService.swift */; };
 		4E11F43329D23E03005185F3 /* CurrencyListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F43229D23E03005185F3 /* CurrencyListViewModelTests.swift */; };
@@ -33,6 +32,15 @@
 		4E11F47029D7983F005185F3 /* APIServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F46F29D7983F005185F3 /* APIServiceMock.swift */; };
 		4E11F47A29D86B8F005185F3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E11F47C29D86B8F005185F3 /* Localizable.strings */; };
 		4E11F47F29D86F03005185F3 /* ConversionsTabConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F47E29D86F03005185F3 /* ConversionsTabConstants.swift */; };
+		4E11F48529D8BE60005185F3 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = 4E11F48429D8BE60005185F3 /* OHHTTPStubs */; };
+		4E11F48729D8BE60005185F3 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4E11F48629D8BE60005185F3 /* OHHTTPStubsSwift */; };
+		4E11F48A29D8BF28005185F3 /* Currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E11F48929D8BF28005185F3 /* Currencies.json */; };
+		4E11F48C29D8C084005185F3 /* LatestAUD.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E11F48B29D8C084005185F3 /* LatestAUD.json */; };
+		4E11F48F29D8C194005185F3 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = 4E11F48E29D8C194005185F3 /* OHHTTPStubs */; };
+		4E11F49129D8C194005185F3 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4E11F49029D8C194005185F3 /* OHHTTPStubsSwift */; };
+		4E11F49329D8C49E005185F3 /* ConversionsTabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F49229D8C49E005185F3 /* ConversionsTabUITests.swift */; };
+		4E11F49529D8C50F005185F3 /* GBPtoEUR.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E11F49429D8C50F005185F3 /* GBPtoEUR.json */; };
+		4E11F49729D8C560005185F3 /* BaseUITestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F49629D8C560005185F3 /* BaseUITestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +68,7 @@
 		4E11F40829D23124005185F3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4E11F40E29D23125005185F3 /* ConvertoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConvertoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E11F41829D23125005185F3 /* ConvertoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConvertoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E11F41C29D23125005185F3 /* ConvertoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertoUITests.swift; sourceTree = "<group>"; };
-		4E11F41E29D23125005185F3 /* ConvertoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4E11F41C29D23125005185F3 /* CurrenciesTabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesTabUITests.swift; sourceTree = "<group>"; };
 		4E11F42C29D2320D005185F3 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		4E11F43029D234B6005185F3 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		4E11F43229D23E03005185F3 /* CurrencyListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListViewModelTests.swift; sourceTree = "<group>"; };
@@ -84,6 +91,11 @@
 		4E11F47B29D86B8F005185F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4E11F47D29D86B93005185F3 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4E11F47E29D86F03005185F3 /* ConversionsTabConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionsTabConstants.swift; sourceTree = "<group>"; };
+		4E11F48929D8BF28005185F3 /* Currencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Currencies.json; sourceTree = "<group>"; };
+		4E11F48B29D8C084005185F3 /* LatestAUD.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LatestAUD.json; sourceTree = "<group>"; };
+		4E11F49229D8C49E005185F3 /* ConversionsTabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionsTabUITests.swift; sourceTree = "<group>"; };
+		4E11F49429D8C50F005185F3 /* GBPtoEUR.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GBPtoEUR.json; sourceTree = "<group>"; };
+		4E11F49629D8C560005185F3 /* BaseUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITestCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E11F48529D8BE60005185F3 /* OHHTTPStubs in Frameworks */,
+				4E11F48729D8BE60005185F3 /* OHHTTPStubsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +119,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E11F48F29D8C194005185F3 /* OHHTTPStubs in Frameworks */,
+				4E11F49129D8C194005185F3 /* OHHTTPStubsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +134,7 @@
 				4E11F41129D23125005185F3 /* ConvertoTests */,
 				4E11F41B29D23125005185F3 /* ConvertoUITests */,
 				4E11F3FE29D23124005185F3 /* Products */,
+				4E11F48D29D8C194005185F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,8 +181,10 @@
 		4E11F41B29D23125005185F3 /* ConvertoUITests */ = {
 			isa = PBXGroup;
 			children = (
-				4E11F41C29D23125005185F3 /* ConvertoUITests.swift */,
-				4E11F41E29D23125005185F3 /* ConvertoUITestsLaunchTests.swift */,
+				4E11F48829D8BF18005185F3 /* Fixtures */,
+				4E11F41C29D23125005185F3 /* CurrenciesTabUITests.swift */,
+				4E11F49229D8C49E005185F3 /* ConversionsTabUITests.swift */,
+				4E11F49629D8C560005185F3 /* BaseUITestCase.swift */,
 			);
 			path = ConvertoUITests;
 			sourceTree = "<group>";
@@ -283,6 +302,23 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		4E11F48829D8BF18005185F3 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				4E11F48929D8BF28005185F3 /* Currencies.json */,
+				4E11F48B29D8C084005185F3 /* LatestAUD.json */,
+				4E11F49429D8C50F005185F3 /* GBPtoEUR.json */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		4E11F48D29D8C194005185F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -299,6 +335,10 @@
 			dependencies = (
 			);
 			name = Converto;
+			packageProductDependencies = (
+				4E11F48429D8BE60005185F3 /* OHHTTPStubs */,
+				4E11F48629D8BE60005185F3 /* OHHTTPStubsSwift */,
+			);
 			productName = Converto;
 			productReference = 4E11F3FD29D23124005185F3 /* Converto.app */;
 			productType = "com.apple.product-type.application";
@@ -335,6 +375,10 @@
 				4E11F41A29D23125005185F3 /* PBXTargetDependency */,
 			);
 			name = ConvertoUITests;
+			packageProductDependencies = (
+				4E11F48E29D8C194005185F3 /* OHHTTPStubs */,
+				4E11F49029D8C194005185F3 /* OHHTTPStubsSwift */,
+			);
 			productName = ConvertoUITests;
 			productReference = 4E11F41829D23125005185F3 /* ConvertoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -372,6 +416,9 @@
 				"pt-BR",
 			);
 			mainGroup = 4E11F3F429D23124005185F3;
+			packageReferences = (
+				4E11F48329D8BE60005185F3 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+			);
 			productRefGroup = 4E11F3FE29D23124005185F3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -405,6 +452,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E11F49529D8C50F005185F3 /* GBPtoEUR.json in Resources */,
+				4E11F48A29D8BF28005185F3 /* Currencies.json in Resources */,
+				4E11F48C29D8C084005185F3 /* LatestAUD.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,8 +500,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E11F41F29D23125005185F3 /* ConvertoUITestsLaunchTests.swift in Sources */,
-				4E11F41D29D23125005185F3 /* ConvertoUITests.swift in Sources */,
+				4E11F41D29D23125005185F3 /* CurrenciesTabUITests.swift in Sources */,
+				4E11F49329D8C49E005185F3 /* ConversionsTabUITests.swift in Sources */,
+				4E11F49729D8C560005185F3 /* BaseUITestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,7 +768,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = online.larissais.ConvertoUITests;
@@ -738,7 +789,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = online.larissais.ConvertoUITests;
@@ -792,6 +843,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4E11F48329D8BE60005185F3 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4E11F48429D8BE60005185F3 /* OHHTTPStubs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E11F48329D8BE60005185F3 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubs;
+		};
+		4E11F48629D8BE60005185F3 /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E11F48329D8BE60005185F3 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
+		};
+		4E11F48E29D8C194005185F3 /* OHHTTPStubs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E11F48329D8BE60005185F3 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubs;
+		};
+		4E11F49029D8C194005185F3 /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E11F48329D8BE60005185F3 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4E11F3F529D23124005185F3 /* Project object */;
 }

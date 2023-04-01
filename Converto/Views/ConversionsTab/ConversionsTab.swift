@@ -35,7 +35,7 @@ struct ConversionsTab: View {
             
             HStack {
                 VStack(alignment: .center) {
-                    currencyPicker(reference: $viewModel.fromCurrency)
+                    currencyPicker(reference: $viewModel.fromCurrency, identifier: "conversionsTab.fromCurrency.picker")
                     amountTextField(reference: $viewModel.fromAmount, focus: .fromAmount)
                 }
                 .background(viewModel.fromBackgroundColour.animation(.easeInOut(duration: 0.6).repeatCount(3)))
@@ -46,7 +46,7 @@ struct ConversionsTab: View {
                     .foregroundColor(.gray)
                 
                 VStack(alignment: .center) {
-                    currencyPicker(reference: $viewModel.toCurrency)
+                    currencyPicker(reference: $viewModel.toCurrency, identifier: "conversionsTab.toCurrency.picker")
                     amountTextField(reference: $viewModel.toAmount, focus: .toAmount)
                 }
                 .background(viewModel.toBackgroundColour.animation(.easeInOut(duration: 0.6).repeatCount(3)))
@@ -93,13 +93,14 @@ struct ConversionsTab: View {
     }
     
     @ViewBuilder
-    private func currencyPicker(reference: Binding<Currency?>) -> some View {
+    private func currencyPicker(reference: Binding<Currency?>, identifier: String) -> some View {
         Picker(LocalisedStrings.currencyPickerTitle, selection: reference) {
             Text("-").tag(nil as Currency?)
             ForEach(appViewModel.currencies) { currency in
                 Text(currency.code).tag(currency as Currency?)
             }
         }
+        .accessibilityIdentifier(identifier)
         .onTapGesture {
             viewModel.isEditing = true
             focusedField = nil
