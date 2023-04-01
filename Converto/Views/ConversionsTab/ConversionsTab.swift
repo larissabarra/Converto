@@ -23,50 +23,20 @@ struct ConversionsTab: View {
     var body: some View {
         VStack {
             HStack {
-                Picker("From Currency", selection: $viewModel.fromCurrency) {
-                    Text("-").tag(nil as Currency?)
-                    ForEach(appViewModel.currencies) { currency in
-                        Text(currency.code).tag(currency as Currency?)
-                    }
-                }
-                .onTapGesture {
-                    viewModel.isEditing = true
-                    focusedField = nil
-                }
+                currencyPicker(reference: $viewModel.fromCurrency)
                 
                 Spacer()
                 
-                Picker("To Currency", selection: $viewModel.toCurrency) {
-                    Text("-").tag(nil as Currency?)
-                    ForEach(appViewModel.currencies) { currency in
-                        Text(currency.code).tag(currency as Currency?)
-                    }
-                }
-                .onTapGesture {
-                    viewModel.isEditing = true
-                    focusedField = nil
-                }
+                currencyPicker(reference: $viewModel.toCurrency)
             }
             
             HStack {
-                TextField("Amount", text: $viewModel.fromAmount)
-                    .keyboardType(.decimalPad)
-                    .onTapGesture {
-                        viewModel.fromAmount = ""
-                        viewModel.isEditing = true
-                    }
-                    .focused($focusedField, equals: .fromAmount)
+                amountTextField(reference: $viewModel.fromAmount, focus: .fromAmount)
                 
                 Text("=")
                     .font(.title)
                 
-                TextField("Amount", text: $viewModel.toAmount)
-                    .keyboardType(.decimalPad)
-                    .onTapGesture {
-                        viewModel.toAmount = ""
-                        viewModel.isEditing = true
-                    }
-                    .focused($focusedField, equals: .toAmount)
+                amountTextField(reference: $viewModel.toAmount, focus: .toAmount)
             }
         }
         .toolbar {
@@ -89,6 +59,31 @@ struct ConversionsTab: View {
             viewModel.convert(updated: .toAmount)
         }
         .padding(24)
+    }
+    
+    @ViewBuilder
+    private func currencyPicker(reference: Binding<Currency?>) -> some View {
+        Picker("From Currency", selection: reference) {
+            Text("-").tag(nil as Currency?)
+            ForEach(appViewModel.currencies) { currency in
+                Text(currency.code).tag(currency as Currency?)
+            }
+        }
+        .onTapGesture {
+            viewModel.isEditing = true
+            focusedField = nil
+        }
+    }
+    
+    @ViewBuilder
+    private func amountTextField(reference: Binding<String>, focus: Field) -> some View {
+        TextField("Amount", text: reference)
+            .keyboardType(.decimalPad)
+            .onTapGesture {
+                reference.wrappedValue = ""
+                viewModel.isEditing = true
+            }
+            .focused($focusedField, equals: focus)
     }
 }
 
