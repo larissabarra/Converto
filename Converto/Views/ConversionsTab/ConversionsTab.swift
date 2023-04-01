@@ -21,7 +21,7 @@ struct ConversionsTab: View {
     @FocusState private var focusedField: Field?
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 0) {
             Text(LocalisedStrings.title)
                 .font(.title)
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -34,21 +34,25 @@ struct ConversionsTab: View {
                 .foregroundColor(.gray)
             
             HStack {
-                currencyPicker(reference: $viewModel.fromCurrency)
-                
-                Spacer()
-                
-                currencyPicker(reference: $viewModel.toCurrency)
-            }
-            
-            HStack {
-                amountTextField(reference: $viewModel.fromAmount, focus: .fromAmount)
+                VStack(alignment: .center) {
+                    currencyPicker(reference: $viewModel.fromCurrency)
+                    amountTextField(reference: $viewModel.fromAmount, focus: .fromAmount)
+                }
+                .background(Color(.lightGray).opacity(0.1))
+                .cornerRadius(8)
                 
                 Text("=")
                     .font(.title)
+                    .foregroundColor(.gray)
                 
-                amountTextField(reference: $viewModel.toAmount, focus: .toAmount)
+                VStack(alignment: .center) {
+                    currencyPicker(reference: $viewModel.toCurrency)
+                    amountTextField(reference: $viewModel.toAmount, focus: .toAmount)
+                }
+                .background(Color(.lightGray).opacity(0.1))
+                .cornerRadius(8)
             }
+            .padding(24)
         }
         .toolbar {
             ToolbarItem(placement: .keyboard) {
@@ -69,7 +73,6 @@ struct ConversionsTab: View {
         .onChange(of: viewModel.toAmount) { _ in
             viewModel.convert(updated: .toAmount)
         }
-        .padding(24)
     }
     
     @ViewBuilder
@@ -95,6 +98,9 @@ struct ConversionsTab: View {
                 viewModel.isEditing = true
             }
             .focused($focusedField, equals: focus)
+            .padding([.leading, .trailing, .bottom], 8)
+            .multilineTextAlignment(.center)
+            .font(.title2)
     }
 }
 

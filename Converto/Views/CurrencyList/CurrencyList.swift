@@ -67,8 +67,7 @@ struct CurrencyList: View {
                     selectedCurrency = currency
                     viewModel.latestFrom(currency)
                 }
-                .listRowBackground(self.selectedCurrency == currency ? Color.green : Color.clear)
-                .contentTransition(.opacity)
+                .listRowBackground(self.selectedCurrency == currency ? Color.green.opacity(0.2) : Color.clear)
             }.listStyle(.plain)
         }
     }
