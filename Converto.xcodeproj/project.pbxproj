@@ -31,6 +31,8 @@
 		4E11F46829D796AE005185F3 /* URLSessionAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F46729D796AE005185F3 /* URLSessionAPIService.swift */; };
 		4E11F46A29D797B9005185F3 /* FrankfurterCurrencyServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F46929D797B9005185F3 /* FrankfurterCurrencyServiceTests.swift */; };
 		4E11F47029D7983F005185F3 /* APIServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F46F29D7983F005185F3 /* APIServiceMock.swift */; };
+		4E11F47A29D86B8F005185F3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4E11F47C29D86B8F005185F3 /* Localizable.strings */; };
+		4E11F47F29D86F03005185F3 /* ConversionsTabConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E11F47E29D86F03005185F3 /* ConversionsTabConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,9 @@
 		4E11F46729D796AE005185F3 /* URLSessionAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionAPIService.swift; sourceTree = "<group>"; };
 		4E11F46929D797B9005185F3 /* FrankfurterCurrencyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrankfurterCurrencyServiceTests.swift; sourceTree = "<group>"; };
 		4E11F46F29D7983F005185F3 /* APIServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceMock.swift; sourceTree = "<group>"; };
+		4E11F47B29D86B8F005185F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4E11F47D29D86B93005185F3 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4E11F47E29D86F03005185F3 /* ConversionsTabConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionsTabConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +184,7 @@
 		4E11F43429D35633005185F3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E11F47729D86B5E005185F3 /* Resources */,
 				4E11F40029D23124005185F3 /* ConvertoApp.swift */,
 				4E11F45C29D76124005185F3 /* AppViewModel.swift */,
 				4E11F45029D5D098005185F3 /* ConversionsTab */,
@@ -202,6 +208,7 @@
 			children = (
 				4E11F45129D5D0BC005185F3 /* ConversionsTab.swift */,
 				4E11F45629D5DBF0005185F3 /* ConversionsTabViewModel.swift */,
+				4E11F47E29D86F03005185F3 /* ConversionsTabConstants.swift */,
 			);
 			path = ConversionsTab;
 			sourceTree = "<group>";
@@ -266,6 +273,14 @@
 				4E11F46929D797B9005185F3 /* FrankfurterCurrencyServiceTests.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		4E11F47729D86B5E005185F3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4E11F47C29D86B8F005185F3 /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,6 +369,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = 4E11F3F429D23124005185F3;
 			productRefGroup = 4E11F3FE29D23124005185F3 /* Products */;
@@ -373,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E11F40929D23124005185F3 /* Preview Assets.xcassets in Resources */,
+				4E11F47A29D86B8F005185F3 /* Localizable.strings in Resources */,
 				4E11F40529D23124005185F3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +427,7 @@
 				4E11F43829D36212005185F3 /* LatestExchangeRates.swift in Sources */,
 				4E11F45D29D76124005185F3 /* AppViewModel.swift in Sources */,
 				4E11F42D29D2320D005185F3 /* Currency.swift in Sources */,
+				4E11F47F29D86F03005185F3 /* ConversionsTabConstants.swift in Sources */,
 				4E11F46329D7955E005185F3 /* APIService.swift in Sources */,
 				4E11F45229D5D0BC005185F3 /* ConversionsTab.swift in Sources */,
 			);
@@ -451,6 +469,18 @@
 			targetProxy = 4E11F41929D23125005185F3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4E11F47C29D86B8F005185F3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4E11F47B29D86B8F005185F3 /* en */,
+				4E11F47D29D86B93005185F3 /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4E11F42029D23125005185F3 /* Debug */ = {
@@ -507,6 +537,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -558,6 +589,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;

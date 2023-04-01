@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension CurrencyList {
     
     enum LocalisedStrings {
         
-        static let currencies = "Currencies"
-        static let description = "Select any currency to see the latest exchange rates"
+        static let currencies = LocalizedStringKey("currenciesTab.list.title")
+        static let description = LocalizedStringKey("currenciesTab.description")
         
-        static let code = "Code"
-        static let currencyName = "Name"
-        static let rate = "Rate"
+        static let code = LocalizedStringKey("currenciesTab.list.header.code")
+        static let currencyName = LocalizedStringKey("currenciesTab.list.header.name")
+        static let rate = LocalizedStringKey("currenciesTab.list.header.rate")
     }
 }

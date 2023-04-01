@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  Converto
+
+  Created by Larissa Barra on 01/04/2023.
+  
+*/
+
+/* ======= CURRENCIES TAB ======= */
+
+"currenciesTab.title" = "Currencies";
+"currenciesTab.list.title" = "Available currencies";
+"currenciesTab.description" = "Select any currency to see the latest exchange rates";
+
+"currenciesTab.list.header.code" = "Code";
+"currenciesTab.list.header.name" = "Name";
+"currenciesTab.list.header.rate" = "Rate";
+
+/* ======= EXCHANGE TAB ======= */
+
+"conversionsTab.title" = "Exchange Rates";
+"conversionsTab.view.title" = "Exchange rates";
+"conversionsTab.description" = "Select currencies and enter amounts to find out the latest conversion rates";
+"conversionsTab.keyboard.done.button" = "Done";
+"conversionsTab.currency.picker.title" = "Select currency";
+"conversionsTab.amount.textField.placeholder" = "Amount";

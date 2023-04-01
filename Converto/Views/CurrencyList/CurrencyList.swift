@@ -19,27 +19,27 @@ struct CurrencyList: View {
         
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(CurrencyList.LocalisedStrings.currencies)
+            Text(LocalisedStrings.currencies)
                 .font(.title)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding([.top, .leading, .trailing], 16)
                 .padding([.bottom], 8)
             
-            Text(CurrencyList.LocalisedStrings.description)
+            Text(LocalisedStrings.description)
                 .font(.callout)
                 .padding([.leading, .trailing], 16)
                 .foregroundColor(.gray)
             
             HStack(alignment: .center) {
-                Text(CurrencyList.LocalisedStrings.code)
+                Text(LocalisedStrings.code)
                     .frame(minWidth: 50, alignment: .leading)
                 
-                Text(CurrencyList.LocalisedStrings.currencyName)
+                Text(LocalisedStrings.currencyName)
                     .frame(alignment: .leading)
                 
                 Spacer()
                 
-                Text(CurrencyList.LocalisedStrings.rate)
+                Text(LocalisedStrings.rate)
             }
             .padding([.top, .leading, .trailing], 16)
             .padding([.bottom], 5)

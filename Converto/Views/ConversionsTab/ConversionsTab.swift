@@ -22,6 +22,17 @@ struct ConversionsTab: View {
     
     var body: some View {
         VStack {
+            Text(LocalisedStrings.title)
+                .font(.title)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding([.top, .leading, .trailing], 16)
+                .padding([.bottom], 8)
+            
+            Text(LocalisedStrings.description)
+                .font(.callout)
+                .padding([.leading, .trailing], 16)
+                .foregroundColor(.gray)
+            
             HStack {
                 currencyPicker(reference: $viewModel.fromCurrency)
                 
@@ -41,7 +52,7 @@ struct ConversionsTab: View {
         }
         .toolbar {
             ToolbarItem(placement: .keyboard) {
-                Button("Done") {
+                Button(LocalisedStrings.keyboardDone) {
                     focusedField = nil
                 }
             }
@@ -63,7 +74,7 @@ struct ConversionsTab: View {
     
     @ViewBuilder
     private func currencyPicker(reference: Binding<Currency?>) -> some View {
-        Picker("From Currency", selection: reference) {
+        Picker(LocalisedStrings.currencyPickerTitle, selection: reference) {
             Text("-").tag(nil as Currency?)
             ForEach(appViewModel.currencies) { currency in
                 Text(currency.code).tag(currency as Currency?)
@@ -77,7 +88,7 @@ struct ConversionsTab: View {
     
     @ViewBuilder
     private func amountTextField(reference: Binding<String>, focus: Field) -> some View {
-        TextField("Amount", text: reference)
+        TextField(LocalisedStrings.amountFieldPlaceholder, text: reference)
             .keyboardType(.decimalPad)
             .onTapGesture {
                 reference.wrappedValue = ""

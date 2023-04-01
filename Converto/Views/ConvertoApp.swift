@@ -14,10 +14,6 @@ struct ConvertoApp: App {
     
     @StateObject private var viewModel = ViewModel()
     
-//    init() {
-//        _viewModel = StateObject(wrappedValue: ViewModel(currencyService: self.currencyService))
-//    }
-    
     var body: some Scene {
         WindowGroup {
             switch viewModel.viewState {
@@ -29,13 +25,13 @@ struct ConvertoApp: App {
                         CurrencyList(currencyService: currencyService)
                             .tabItem {
                                 Image(systemName: "list.dash")
-                                Text("Currencies")
+                                Text(LocalizedStringKey("currenciesTab.title"))
                             }
                             .environmentObject(viewModel)
                         ConversionsTab()
                             .tabItem {
                                 Image(systemName: "arrow.left.arrow.right")
-                                Text("Exchange Rates")
+                                Text(LocalizedStringKey("conversionsTab.title"))
                             }
                             .environmentObject(viewModel)
                     }
