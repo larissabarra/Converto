@@ -21,7 +21,7 @@ struct ConversionsTab: View {
     @FocusState private var focusedField: Field?
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(spacing: 0) {
             Text(LocalisedStrings.title)
                 .font(.title)
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -38,7 +38,7 @@ struct ConversionsTab: View {
                     currencyPicker(reference: $viewModel.fromCurrency)
                     amountTextField(reference: $viewModel.fromAmount, focus: .fromAmount)
                 }
-                .background(Color(.lightGray).opacity(0.1))
+                .background(viewModel.fromBackgroundColour.animation(.easeInOut(duration: 0.6).repeatCount(3)))
                 .cornerRadius(8)
                 
                 Text("=")
@@ -49,10 +49,21 @@ struct ConversionsTab: View {
                     currencyPicker(reference: $viewModel.toCurrency)
                     amountTextField(reference: $viewModel.toAmount, focus: .toAmount)
                 }
-                .background(Color(.lightGray).opacity(0.1))
+                .background(viewModel.toBackgroundColour.animation(.easeInOut(duration: 0.6).repeatCount(3)))
                 .cornerRadius(8)
             }
             .padding(24)
+            
+            Button {
+                viewModel.isEditing = false
+                viewModel.fromCurrency = nil
+                viewModel.toCurrency = nil
+                viewModel.fromAmount = ""
+                viewModel.toAmount = ""
+            } label: {
+                Text(LocalisedStrings.clear)
+            }
+
         }
         .toolbar {
             ToolbarItem(placement: .keyboard) {
@@ -72,6 +83,12 @@ struct ConversionsTab: View {
         }
         .onChange(of: viewModel.toAmount) { _ in
             viewModel.convert(updated: .toAmount)
+        }
+        .onChange(of: viewModel.fromBackgroundColour) { _ in
+            viewModel.fromBackgroundColour = Color(.lightGray).opacity(0.1)
+        }
+        .onChange(of: viewModel.toBackgroundColour) { _ in
+            viewModel.toBackgroundColour = Color(.lightGray).opacity(0.1)
         }
     }
     

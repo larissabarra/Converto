@@ -24,3 +24,4 @@
 "conversionsTab.keyboard.done.button" = "Pronto";
 "conversionsTab.currency.picker.title" = "Selecione a moeda";
 "conversionsTab.amount.textField.placeholder" = "Valor";
+"conversionsTab.clear.button" = "Limpar";

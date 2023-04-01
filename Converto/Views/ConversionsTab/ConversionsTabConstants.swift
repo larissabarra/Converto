@@ -16,9 +16,8 @@ extension ConversionsTab {
         static let description = LocalizedStringKey("conversionsTab.description")
         
         static let keyboardDone = LocalizedStringKey("conversionsTab.keyboard.done.button")
-        
-        static let currencyPickerTitle = LocalizedStringKey("conversionsTab.currency.picker.title") //"Select currency"
-        
-        static let amountFieldPlaceholder = LocalizedStringKey("conversionsTab.amount.textField.placeholder") //"Amount"
+        static let currencyPickerTitle = LocalizedStringKey("conversionsTab.currency.picker.title")
+        static let amountFieldPlaceholder = LocalizedStringKey("conversionsTab.amount.textField.placeholder")
+        static let clear = LocalizedStringKey("conversionsTab.clear.button")
     }
 }
