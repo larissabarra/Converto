@@ -13,25 +13,25 @@ import XCTest
 class CurrencyListViewModelTests: XCTestCase {
     
     var viewModel: CurrencyList.ViewModel!
-    var mockAPIService: CurrencyServiceMock!
+    var mockCurrencyService: CurrencyServiceMock!
     
     override func setUp() {
         super.setUp()
-        mockAPIService = CurrencyServiceMock()
-        viewModel = CurrencyList.ViewModel(currencyService: mockAPIService)
+        mockCurrencyService = CurrencyServiceMock()
+        viewModel = CurrencyList.ViewModel(currencyService: mockCurrencyService)
     }
     
     override func tearDown() {
         viewModel = nil
-        mockAPIService = nil
+        mockCurrencyService = nil
         super.tearDown()
     }
     
     func testFetchLatestExchange() {
         let gbp = Currency(code: "GBP", name: "British Pound")
         let eur = Currency(code: "EUR", name: "Euro")
-        mockAPIService.currencies = [gbp, eur]
-        mockAPIService.exchangeRates = LatestExchangeRates(amount: 1,
+        mockCurrencyService.currencies = [gbp, eur]
+        mockCurrencyService.exchangeRates = LatestExchangeRates(amount: 1,
                                                            base: "BRL",
                                                            date: "2023-03-28",
                                                            rates: ["GBP" : 6, "EUR": 5])

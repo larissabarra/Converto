@@ -13,22 +13,22 @@ import XCTest
 class AppViewModelTests: XCTestCase {
     
     var viewModel: ConvertoApp.ViewModel!
-    var mockAPIService: CurrencyServiceMock!
+    var mockCurrencyService: CurrencyServiceMock!
     
     override func setUp() {
         super.setUp()
-        mockAPIService = CurrencyServiceMock()
-        viewModel = ConvertoApp.ViewModel(currencyService: mockAPIService)
+        mockCurrencyService = CurrencyServiceMock()
+        viewModel = ConvertoApp.ViewModel(currencyService: mockCurrencyService)
     }
     
     override func tearDown() {
         viewModel = nil
-        mockAPIService = nil
+        mockCurrencyService = nil
         super.tearDown()
     }
     
     func testFetchCurrenciesSuccess() {
-        mockAPIService.currencies = [
+        mockCurrencyService.currencies = [
             Currency(code: "USD", name: "United States Dollar"),
             Currency(code: "EUR", name: "Euro"),
             Currency(code: "JPY", name: "Japanese Yen")
@@ -48,7 +48,7 @@ class AppViewModelTests: XCTestCase {
     }
     
     func testFetchCurrenciesFailure() {
-        mockAPIService.error = URLError(.unknown)
+        mockCurrencyService.error = URLError(.unknown)
         
         let expectation = XCTestExpectation(description: "Fetch currencies should fail")
         
