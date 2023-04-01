@@ -42,85 +42,80 @@ extension ConversionsTab {
                    toAmount.isEmpty].filter({ $0 }).count <= 1
             else { return }
             
-            let fromC: Currency
-            let toC: Currency
-            let fromA: Double
+            var fromC: Currency = Currency(code: "", name: "")
+            var toC: Currency = Currency(code: "", name: "")
+            var fromA: Double = 0
             var toAndFromSwitched = false
             
             switch updated {
                 case .fromCurrency:
                     guard let fromCurrency else { return }
                     if let fromAmount = Double(fromAmount), let toCurrency {
-                        fromC = fromCurrency
-                        toC = toCurrency
-                        fromA = fromAmount
-                        toBackgroundColour = Color(.green)
+                        setupFieldsWithFromValues(fromCurrency, toCurrency, fromAmount)
                     } else if let toAmount = Double(toAmount), let toCurrency {
-                        fromC = toCurrency
-                        toC = fromCurrency
-                        fromA = toAmount
+                        setupFieldsWithToValues(fromCurrency, toCurrency, toAmount)
                         toAndFromSwitched = true
-                        fromBackgroundColour = Color(.green)
                     } else { return }
                     
                 case .toCurrency:
                     guard let toCurrency else { return }
                     if let toAmount = Double(toAmount), let fromCurrency {
-                        fromC = toCurrency
-                        toC = fromCurrency
-                        fromA = toAmount
+                        setupFieldsWithToValues(fromCurrency, toCurrency, toAmount)
                         toAndFromSwitched = true
-                        fromBackgroundColour = Color(.green)
                     } else if let fromAmount = Double(fromAmount), let fromCurrency {
-                        fromC = fromCurrency
-                        toC = toCurrency
-                        fromA = fromAmount
-                        toBackgroundColour = Color(.green)
+                        setupFieldsWithFromValues(fromCurrency, toCurrency, fromAmount)
                     } else { return }
                     
                 case .fromAmount:
                     guard let fromAmount = Double(fromAmount), let fromCurrency, let toCurrency else { return }
-                    fromC = fromCurrency
-                    toC = toCurrency
-                    fromA = fromAmount
-                    toBackgroundColour = Color(.green)
+                    setupFieldsWithFromValues(fromCurrency, toCurrency, fromAmount)
                     
                 case .toAmount:
                     guard let toAmount = Double(toAmount), let fromCurrency, let toCurrency else { return }
-                    fromC = toCurrency
-                    toC = fromCurrency
-                    fromA = toAmount
-                    fromBackgroundColour = Color(.green)
+                    setupFieldsWithToValues(fromCurrency, toCurrency, toAmount)
+            }
+            
+            func setupFieldsWithFromValues(_ fromCurrency: Currency, _ toCurrency: Currency, _ fromAmount: Double) {
+                fromC = fromCurrency
+                toC = toCurrency
+                fromA = fromAmount
+                toBackgroundColour = Color(.green)
+            }
+            
+            func setupFieldsWithToValues(_ fromCurrency: Currency, _ toCurrency: Currency, _ toAmount: Double) {
+                fromC = toCurrency
+                toC = fromCurrency
+                fromA = toAmount
+                fromBackgroundColour = Color(.green)
             }
             
             currencyService.convert(amount: fromA, from: fromC, to: toC) { result in
                 switch result {
                     case .success(let exchangeRate):
                         DispatchQueue.main.async {
+                            
                             self.isEditing = false
+                            
                             switch updated {
-                                case .fromCurrency:
+                                case .fromCurrency, .toCurrency:
                                     if toAndFromSwitched {
-                                        self.fromAmount = String(format: "%.2f", (exchangeRate.rates.first?.value ?? 0))
+                                        updateField(&self.fromAmount)
                                     } else {
-                                        self.toAmount = String(format: "%.2f", (exchangeRate.rates.first?.value ?? 0))
-                                    }
-                                    
-                                case .toCurrency:
-                                    if toAndFromSwitched {
-                                        self.fromAmount = String(format: "%.2f", (exchangeRate.rates.first?.value ?? 0))
-                                    } else {
-                                        self.toAmount = String(format: "%.2f", (exchangeRate.rates.first?.value ?? 0))
+                                        updateField(&self.toAmount)
                                     }
                                     
                                 case .fromAmount:
-                                    self.toAmount = String(format: "%.2f", (exchangeRate.rates.first?.value ?? 0))
+                                    updateField(&self.toAmount)
                                     
                                 case .toAmount:
-                                    self.fromAmount = String(format: "%.2f", (exchangeRate.rates.first?.value ?? 0))
+                                    updateField(&self.fromAmount)
                             }
                             
                             toAndFromSwitched = false
+                        }
+                        
+                        func updateField(_ field: inout String) {
+                            field = String(format: "%.2f", (exchangeRate.rates.first?.value ?? 0))
                         }
                         
                     case .failure(let error):
