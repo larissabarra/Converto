@@ -13,11 +13,15 @@ class APIServiceMock: APIService {
     var expectedResult: Any?
     var error: Error?
     
+    var didCallPerformRequest = false
+    
     var url: URL?
     var dataType: Any?
     var responseType: Any?
     
     func performRequest<V, T>(url: URL, dataType: V.Type, responseType: T.Type, mappingFunction: ((V) -> T)?, cache: NSCache<NSURL, Converto.StructWrapper<T>>, completion: @escaping (Result<T, Error>) -> Void) where V : Decodable {
+        
+        self.didCallPerformRequest = true
         
         self.url = url
         self.dataType = dataType

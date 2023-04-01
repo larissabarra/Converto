@@ -9,7 +9,7 @@ import Foundation
 
 class URLSessionAPIService: APIService {
     
-    func performRequest<V: Decodable, T>(url: URL, dataType: V.Type, responseType: T.Type, mappingFunction: ((V) -> T)? = nil, cache: NSCache<NSURL, StructWrapper<T>>, completion: @escaping (Result<T, Error>) -> Void) {
+    func performRequest<V: Decodable, T>(url: URL, dataType: V.Type, responseType: T.Type, mappingFunction: ((V) -> T)? = nil, cache: StructCache<NSURL, T>, completion: @escaping (Result<T, Error>) -> Void) {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -31,7 +31,7 @@ class URLSessionAPIService: APIService {
                     return
                 }
                 
-                cache.setObject(StructWrapper(result), forKey: url as NSURL)
+                cache.saveObject(key: url as NSURL, value: result)
                 
                 completion(.success(result))
             } catch {

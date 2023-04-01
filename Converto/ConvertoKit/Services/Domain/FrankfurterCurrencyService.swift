@@ -10,14 +10,18 @@ import Foundation
 class FrankfurterCurrencyService: CurrencyService {
     let basePath = "https://api.frankfurter.app"
     
-    private let currenciesCache = NSCache<NSURL, StructWrapper<[Currency]>>()
-    private let exchangeCache = NSCache<NSURL, StructWrapper<LatestExchangeRates>>()
+    private let currenciesCache: any Cache
+    private let exchangeCache: any Cache
     private let exchangeCacheDuration = TimeInterval(60 * 60 * 24)
     
     private let apiService: APIService
     
-    init(apiService: APIService = URLSessionAPIService()) {
+    init(apiService: APIService = URLSessionAPIService(),
+         currenciesCache: some Cache = StructCache<NSURL, [Currency]>(),
+         exchangeCache: some Cache = StructCache<NSURL, LatestExchangeRates>()) {
         self.apiService = apiService
+        self.currenciesCache = currenciesCache
+        self.exchangeCache = exchangeCache
     }
     
     func fetchCurrencies(completion: @escaping (Result<[Currency], Error>) -> Void) {
@@ -26,8 +30,8 @@ class FrankfurterCurrencyService: CurrencyService {
             return
         }
         
-        if let currencies = currenciesCache.object(forKey: url as NSURL) {
-            completion(.success(currencies.unwrap()))
+        if let currencies = currenciesCache.getObject(for: url as NSURL) {
+            completion(.success(currencies))
             return
         }
         
@@ -35,7 +39,7 @@ class FrankfurterCurrencyService: CurrencyService {
                                   dataType: [String: String].self,
                                   responseType: [Currency].self,
                                   mappingFunction: { data in data.map { Currency(code: $0.key, name: $0.value) }},
-                                  cache: currenciesCache,
+                                  cache: currenciesCache as! StructCache<NSURL, [Currency]>,
                                   completion: completion)
     }
     
